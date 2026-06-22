@@ -1,6 +1,6 @@
 # Book Inventory
 
-_8 finished &middot; 13 started &middot; 36 not started &middot; 57 total &middot; 23,955 pages_
+_8 finished &middot; 13 started &middot; 37 not started &middot; 58 total &middot; 24,597 pages_
 
 Generated from `books.json` by `build.py`. Relevance 1-5 (5 = core to research).
 
@@ -63,3 +63,4 @@ Generated from `books.json` by `build.py`. Relevance 1-5 (5 = core to research).
 | 55 | The Lost Children of Wilder | Nina Bernstein | Child Welfare & Foster Care | 5 | 496 | Started |
 | 56 | The Origins of the Urban Crisis | Thomas J. Sugrue | Urban & Housing | 4 | 400 | Started |
 | 57 | Demon Copperhead | Barbara Kingsolver | Fiction | 2 | 560 | Finished |
+| 58 | Information Theory, Inference and Learning Algorithms | David J. C. MacKay | Economics & Quant Methods | 3 | 642 | Not started |

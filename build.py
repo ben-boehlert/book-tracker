@@ -113,7 +113,7 @@ function filt(){const q=document.getElementById('q').value.toLowerCase().trim(),
 function render(){const rows=filt().slice().sort((a,b)=>{let x=a[sortK],y=b[sortK];if(sortK==='status'){x=ORD[x];y=ORD[y];}if(typeof x==='string'){x=x.toLowerCase();y=y.toLowerCase();}return(x<y?-1:x>y?1:0)*dir;});
   document.getElementById('body').innerHTML=rows.map(b=>'<tr><td class="num">'+b.n+'</td>'+
     '<td><span class="title">'+esc(b.title)+'</span><div class="auth only-sm">'+esc(b.author)+'</div></td>'+
-    '<td class="auth hide-sm">'+esc(b.author)+'</td><td class="center hide-sm"><span class="pill">'+b.shelf+'</span></td>'+
+    '<td class="auth hide-sm">'+esc(b.author)+'</td><td class="center hide-sm"><span class="pill">'+(b.shelf??'—')+'</span></td>'+
     '<td class="hide-sm">'+esc(b.cat)+'</td><td class="center"><span class="rel" style="background:'+RB[b.rel]+';color:'+RF[b.rel]+'">'+b.rel+'</span></td>'+
     '<td class="num">'+b.pages+'</td><td class="center"><span class="badge '+cls(b.status)+'">'+b.status+'</span></td></tr>').join('');
   document.querySelectorAll('th').forEach(th=>{th.classList.toggle('sorted',th.dataset.k===sortK);th.classList.toggle('desc',th.dataset.k===sortK&&dir<0);});}

@@ -568,5 +568,15 @@
     "rel": 2,
     "pages": 560,
     "status": "Finished"
+  },
+  {
+    "n": 58,
+    "title": "Information Theory, Inference and Learning Algorithms",
+    "author": "David J. C. MacKay",
+    "shelf": null,
+    "cat": "Economics & Quant Methods",
+    "rel": 3,
+    "pages": 642,
+    "status": "Not started"
   }
 ]
