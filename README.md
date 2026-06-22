@@ -1,5 +1,7 @@
 # Book Tracker
 
+**Live:** https://ben-boehlert.github.io/book-tracker/ (public GitHub Pages site)
+
 A simple, version-controlled tracker for my personal library — what I own, how
 relevant each book is to my research, how long it is, and where I am in it.
 
