@@ -578,5 +578,45 @@
     "relevance": "Maybe relevant",
     "pages": 642,
     "status": "Not started"
+  },
+  {
+    "n": 59,
+    "title": "Addiction by Design",
+    "author": "Natasha Dow Schüll",
+    "shelf": null,
+    "cat": "Science & Tech",
+    "relevance": "Will be relevant",
+    "pages": 472,
+    "status": "Started"
+  },
+  {
+    "n": 60,
+    "title": "Liberalism as a Way of Life",
+    "author": "Alexandre Lefebvre",
+    "shelf": null,
+    "cat": "Politics & Philosophy",
+    "relevance": "For fun",
+    "pages": 304,
+    "status": "Not started"
+  },
+  {
+    "n": 61,
+    "title": "The Power to Destroy",
+    "author": "Michael J. Graetz",
+    "shelf": null,
+    "cat": "Public Finance & Tax",
+    "relevance": "Will be relevant",
+    "pages": 368,
+    "status": "Not started"
+  },
+  {
+    "n": 62,
+    "title": "AI Snake Oil",
+    "author": "Arvind Narayanan & Sayash Kapoor",
+    "shelf": null,
+    "cat": "Science & Tech",
+    "relevance": "Maybe relevant",
+    "pages": 360,
+    "status": "Not started"
   }
 ]

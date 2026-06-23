@@ -1,6 +1,6 @@
 # Book Inventory
 
-_8 finished &middot; 13 started &middot; 37 not started &middot; 58 total &middot; 24,597 pages_
+_8 finished &middot; 14 started &middot; 40 not started &middot; 62 total &middot; 26,101 pages_
 
 Generated from `books.json` by `build.py`. Research relevance: Immediately relevant / Will be relevant / Maybe relevant / For fun.
 
@@ -64,3 +64,7 @@ Generated from `books.json` by `build.py`. Research relevance: Immediately relev
 | 56 | The Origins of the Urban Crisis | Thomas J. Sugrue | Urban & Housing | Will be relevant | 400 | Started |
 | 57 | Demon Copperhead | Barbara Kingsolver | Fiction | For fun | 560 | Finished |
 | 58 | Information Theory, Inference and Learning Algorithms | David J. C. MacKay | Economics & Quant Methods | Maybe relevant | 642 | Not started |
+| 59 | Addiction by Design | Natasha Dow Schüll | Science & Tech | Will be relevant | 472 | Started |
+| 60 | Liberalism as a Way of Life | Alexandre Lefebvre | Politics & Philosophy | For fun | 304 | Not started |
+| 61 | The Power to Destroy | Michael J. Graetz | Public Finance & Tax | Will be relevant | 368 | Not started |
+| 62 | AI Snake Oil | Arvind Narayanan & Sayash Kapoor | Science & Tech | Maybe relevant | 360 | Not started |
