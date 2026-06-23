@@ -18,13 +18,37 @@ relevant each book is to my research, how long it is, and where I am in it.
 ## Layout
 
 ```
-books.json                  source of truth (57 books)
+books.json                  source of truth
 build.py                    regenerates index.html + exports from books.json
+lookup_pages.py             look up a book's page count from APIs (not the browser)
 index.html                  read-only viewer (generated)
 exports/
   Book_Inventory.xlsx       spreadsheet with a status column (generated)
   book_inventory.md         plain-text table (generated)
 ```
+
+## Looking up page counts
+
+Instead of opening the browser to a retailer, query the APIs:
+
+```bash
+python3 lookup_pages.py "The Power to Destroy" "Graetz"   # one book
+python3 lookup_pages.py --audit                            # compare books.json vs APIs
+```
+
+- **Open Library** is the keyless default — instant, but coverage is patchy and counts
+  are edition-variable (can be off by tens of pages from the in-print edition).
+- **Google Books** has better coverage but its keyless endpoint is rate-limited, so it
+  only kicks in when an API key is set. Create a free key at
+  <https://console.cloud.google.com/> (enable "Books API" → Credentials → API key), then:
+  ```bash
+  export GOOGLE_BOOKS_API_KEY=xxxx        # in ~/.zshrc, OR
+  echo 'GOOGLE_BOOKS_API_KEY=xxxx' > .env # gitignored, stays local
+  ```
+  The key is read from the environment / `.env` only and is never committed.
+
+API counts are edition-approximate. When an exact figure matters, browser-verify on the
+publisher or Amazon page.
 
 ## Rebuild after editing books.json
 
