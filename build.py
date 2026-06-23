@@ -2,8 +2,8 @@
 """Regenerate derived artifacts from books.json (the single source of truth).
 
 Outputs:
-  index.html                 read-only sortable/filterable viewer (data embedded)
-  exports/Book_Inventory.xlsx  spreadsheet with a status column + summary
+  index.html                   read-only sortable/filterable viewer (data embedded)
+  exports/Book_Inventory.xlsx  spreadsheet
   exports/book_inventory.md    plain-text table
 
 Usage: python3 build.py
@@ -14,18 +14,23 @@ from collections import Counter
 ROOT = os.path.dirname(os.path.abspath(__file__))
 books = json.load(open(os.path.join(ROOT, "books.json"), encoding="utf-8"))
 
+RELS = ["Immediately relevant", "Will be relevant", "Maybe relevant", "For fun"]
+RELORD = {r: i for i, r in enumerate(RELS)}
+
 # ---- validate ----
 STATUSES = {"Finished", "Started", "Not started"}
 ns = [b["n"] for b in books]
 assert len(set(ns)) == len(ns), "duplicate ids"
 for b in books:
     assert b["status"] in STATUSES, b
+    assert b["relevance"] in RELS, b
     assert isinstance(b["pages"], int) and b["pages"] > 0, b
-    assert b["rel"] in (1, 2, 3, 4, 5), b
 books.sort(key=lambda b: b["n"])
 cnt = Counter(b["status"] for b in books)
+rc_ = Counter(b["relevance"] for b in books)
 pages = sum(b["pages"] for b in books)
 print(f"{len(books)} books | {dict(cnt)} | {pages:,} pages")
+print("relevance:", {r: rc_[r] for r in RELS})
 
 # ---- index.html (read-only viewer) ----
 VIEW = r'''<!DOCTYPE html>
@@ -64,7 +69,7 @@ VIEW = r'''<!DOCTYPE html>
   td.center,th.center{text-align:center}
   .title{font-weight:600}
   .auth{color:var(--muted);font-size:12.5px}
-  .rel{display:inline-block;min-width:20px;text-align:center;font-weight:700;border-radius:6px;padding:1px 7px;font-size:12px;}
+  .tag{display:inline-block;border-radius:6px;padding:2px 9px;font-size:11.5px;font-weight:600;white-space:nowrap;}
   .badge{display:inline-block;border-radius:999px;padding:3px 11px;font-size:12px;font-weight:600;white-space:nowrap;}
   .Finished{background:var(--fin-bg);color:var(--fin-fg);}
   .Started{background:var(--sta-bg);color:var(--sta-fg);}
@@ -78,30 +83,32 @@ VIEW = r'''<!DOCTYPE html>
 <body>
 <div class="wrap">
   <h1>Book Tracker</h1>
-  <div class="sub">Read-only view. Source of truth is <code>books.json</code>; ask Claude to change a status, then it&rsquo;s committed to git.</div>
+  <div class="sub">Read-only view. Source of truth is <code>books.json</code>; ask Claude to change a status or bucket, then it&rsquo;s committed to git.</div>
   <div class="stats" id="stats"></div>
   <div class="progress" id="prog"></div>
   <div class="bar">
     <input type="search" id="q" placeholder="Search title or author&hellip;">
     <select id="fStatus"><option value="">All statuses</option><option>Finished</option><option>Started</option><option>Not started</option></select>
     <select id="fCat"><option value="">All categories</option></select>
-    <select id="fRel"><option value="">All relevance</option><option value="5">5 &middot; Core</option><option value="4">4 &middot; Strong</option><option value="3">3 &middot; Adjacent</option><option value="2">2 &middot; Tangential</option><option value="1">1 &middot; Personal</option></select>
+    <select id="fRel"><option value="">All buckets</option><option>Immediately relevant</option><option>Will be relevant</option><option>Maybe relevant</option><option>For fun</option></select>
     <button id="reset">Reset</button>
   </div>
   <table>
     <thead><tr>
       <th data-k="n" class="num">#</th><th data-k="title">Title</th><th data-k="author" class="hide-sm">Author</th>
       <th data-k="shelf" class="center hide-sm">Shelf</th><th data-k="cat" class="hide-sm">Category</th>
-      <th data-k="rel" class="center">Rel</th><th data-k="pages" class="num">Pages</th><th data-k="status" class="center">Status</th>
+      <th data-k="relevance">Research relevance</th><th data-k="pages" class="num">Pages</th><th data-k="status" class="center">Status</th>
     </tr></thead>
     <tbody id="body"></tbody>
   </table>
-  <div class="hint">Relevance: <b>5</b> core &middot; <b>4</b> strongly related &middot; <b>3</b> adjacent &middot; <b>2</b> tangential &middot; <b>1</b> personal.</div>
+  <div class="hint">Research buckets: <b>Immediately relevant</b> &middot; <b>Will be relevant</b> &middot; <b>Maybe relevant</b> &middot; <b>For fun</b> (not research).</div>
 </div>
 <script type="application/json" id="books">__DATA__</script>
 <script>
-const RB={5:'#c6efce',4:'#d6e9c6',3:'#ffeb9c',2:'#fce4d6',1:'#e7e6e6'},RF={5:'#006100',4:'#375623',3:'#7f6000',2:'#843c0c',1:'#595959'};
+const RB={'Immediately relevant':'#c6efce','Will be relevant':'#bdd7ee','Maybe relevant':'#ffeb9c','For fun':'#ececec'};
+const RF={'Immediately relevant':'#06611f','Will be relevant':'#1f4e78','Maybe relevant':'#7f6000','For fun':'#595959'};
 const ORD={'Not started':0,'Started':1,'Finished':2};
+const RELORD={'Immediately relevant':0,'Will be relevant':1,'Maybe relevant':2,'For fun':3};
 const books=JSON.parse(document.getElementById('books').textContent);
 let sortK='n',dir=1;
 const cs=document.getElementById('fCat');
@@ -109,12 +116,14 @@ const cs=document.getElementById('fCat');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const cls=s=>s==='Not started'?'ns':s;
 function filt(){const q=document.getElementById('q').value.toLowerCase().trim(),fs=fStatus.value,fc=fCat.value,fr=fRel.value;
-  return books.filter(b=>(!fs||b.status===fs)&&(!fc||b.cat===fc)&&(!fr||String(b.rel)===fr)&&(!q||b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q)));}
-function render(){const rows=filt().slice().sort((a,b)=>{let x=a[sortK],y=b[sortK];if(sortK==='status'){x=ORD[x];y=ORD[y];}if(typeof x==='string'){x=x.toLowerCase();y=y.toLowerCase();}return(x<y?-1:x>y?1:0)*dir;});
+  return books.filter(b=>(!fs||b.status===fs)&&(!fc||b.cat===fc)&&(!fr||b.relevance===fr)&&(!q||b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q)));}
+function render(){const rows=filt().slice().sort((a,b)=>{let x=a[sortK],y=b[sortK];
+    if(sortK==='status'){x=ORD[x];y=ORD[y];}else if(sortK==='relevance'){x=RELORD[x];y=RELORD[y];}
+    if(typeof x==='string'){x=x.toLowerCase();y=y.toLowerCase();}return(x<y?-1:x>y?1:0)*dir;});
   document.getElementById('body').innerHTML=rows.map(b=>'<tr><td class="num">'+b.n+'</td>'+
     '<td><span class="title">'+esc(b.title)+'</span><div class="auth only-sm">'+esc(b.author)+'</div></td>'+
     '<td class="auth hide-sm">'+esc(b.author)+'</td><td class="center hide-sm"><span class="pill">'+(b.shelf??'—')+'</span></td>'+
-    '<td class="hide-sm">'+esc(b.cat)+'</td><td class="center"><span class="rel" style="background:'+RB[b.rel]+';color:'+RF[b.rel]+'">'+b.rel+'</span></td>'+
+    '<td class="hide-sm">'+esc(b.cat)+'</td><td><span class="tag" style="background:'+RB[b.relevance]+';color:'+RF[b.relevance]+'">'+esc(b.relevance)+'</span></td>'+
     '<td class="num">'+b.pages+'</td><td class="center"><span class="badge '+cls(b.status)+'">'+b.status+'</span></td></tr>').join('');
   document.querySelectorAll('th').forEach(th=>{th.classList.toggle('sorted',th.dataset.k===sortK);th.classList.toggle('desc',th.dataset.k===sortK&&dir<0);});}
 function stats(){const t=books.length,pg=books.reduce((s,b)=>s+b.pages,0),by=s=>books.filter(b=>b.status===s);
@@ -132,44 +141,40 @@ open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(
     VIEW.replace("__DATA__", json.dumps(books, ensure_ascii=False)))
 
 # ---- exports/book_inventory.md ----
-md = [f"# Book Inventory",
-      f"",
-      f"_{cnt['Finished']} finished &middot; {cnt['Started']} started &middot; {cnt['Not started']} not started &middot; {len(books)} total &middot; {pages:,} pages_",
-      f"",
-      f"Generated from `books.json` by `build.py`. Relevance 1-5 (5 = core to research).",
-      f"",
-      f"| # | Title | Author | Category | Rel | Pages | Status |",
-      f"|--:|-------|--------|----------|:---:|------:|--------|"]
+md = ["# Book Inventory", "",
+      f"_{cnt['Finished']} finished &middot; {cnt['Started']} started &middot; {cnt['Not started']} not started &middot; {len(books)} total &middot; {pages:,} pages_", "",
+      "Generated from `books.json` by `build.py`. Research relevance: Immediately relevant / Will be relevant / Maybe relevant / For fun.", "",
+      "| # | Title | Author | Category | Research relevance | Pages | Status |",
+      "|--:|-------|--------|----------|--------------------|------:|--------|"]
 for b in books:
-    md.append(f"| {b['n']} | {b['title']} | {b['author']} | {b['cat']} | {b['rel']} | {b['pages']} | {b['status']} |")
+    md.append(f"| {b['n']} | {b['title']} | {b['author']} | {b['cat']} | {b['relevance']} | {b['pages']} | {b['status']} |")
 open(os.path.join(ROOT, "exports", "book_inventory.md"), "w", encoding="utf-8").write("\n".join(md) + "\n")
 
 # ---- exports/Book_Inventory.xlsx ----
 try:
     from openpyxl import Workbook
     from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-    from openpyxl.utils import get_column_letter
     F = "Arial"
     wb = Workbook(); ws = wb.active; ws.title = "Books"
-    heads = ["#", "Title", "Author", "Shelf", "Broad Category", "Relevance (1-5)", "Pages", "Reading Status"]
+    heads = ["#", "Title", "Author", "Shelf", "Broad Category", "Research Relevance", "Pages", "Reading Status"]
     ws.append(heads)
     hf = PatternFill("solid", start_color="1F3864"); thin = Side(style="thin", color="D9D9D9"); bd = Border(thin, thin, thin, thin)
     for c in range(1, len(heads) + 1):
         cell = ws.cell(1, c); cell.fill = hf; cell.font = Font(name=F, bold=True, color="FFFFFF", size=11)
         cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True); cell.border = bd
-    relf = {5: "C6EFCE", 4: "D6E9C6", 3: "FFEB9C", 2: "FCE4D6", 1: "E7E6E6"}
-    relc = {5: "006100", 4: "375623", 3: "7F6000", 2: "843C0C", 1: "595959"}
+    relf = {"Immediately relevant": "C6EFCE", "Will be relevant": "BDD7EE", "Maybe relevant": "FFEB9C", "For fun": "ECECEC"}
+    relc = {"Immediately relevant": "06611F", "Will be relevant": "1F4E78", "Maybe relevant": "7F6000", "For fun": "595959"}
     stf = {"Finished": ("C6EFCE", "006100"), "Started": ("BDD7EE", "1F4E78"), "Not started": ("F2F2F2", "808080")}
     for i, b in enumerate(books, start=2):
-        vals = [b["n"], b["title"], b["author"], b["shelf"], b["cat"], b["rel"], b["pages"], b["status"]]
+        vals = [b["n"], b["title"], b["author"], b["shelf"], b["cat"], b["relevance"], b["pages"], b["status"]]
         for c, v in enumerate(vals, start=1):
             cell = ws.cell(i, c, value=v); cell.font = Font(name=F, size=10); cell.border = bd
-            cell.alignment = Alignment(vertical="top", wrap_text=(c in (2, 3, 5)))
-        for c in (1, 4, 6, 7, 8):
+            cell.alignment = Alignment(vertical="top", wrap_text=(c in (2, 3, 5, 6)))
+        for c in (1, 4, 7, 8):
             ws.cell(i, c).alignment = Alignment(horizontal="center", vertical="top")
-        rc = ws.cell(i, 6); rc.fill = PatternFill("solid", start_color=relf[b["rel"]]); rc.font = Font(name=F, size=10, bold=True, color=relc[b["rel"]])
+        rc = ws.cell(i, 6); rc.fill = PatternFill("solid", start_color=relf[b["relevance"]]); rc.font = Font(name=F, size=10, bold=True, color=relc[b["relevance"]])
         sc = ws.cell(i, 8); fill, fg = stf[b["status"]]; sc.fill = PatternFill("solid", start_color=fill); sc.font = Font(name=F, size=10, bold=(b["status"] != "Not started"), color=fg)
-    for c, w in zip("ABCDEFGH", [4, 40, 30, 7, 24, 14, 9, 14]):
+    for c, w in zip("ABCDEFGH", [4, 40, 30, 7, 24, 19, 8, 14]):
         ws.column_dimensions[c].width = w
     ws.freeze_panes = "A2"; ws.auto_filter.ref = f"A1:H{len(books)+1}"; ws.row_dimensions[1].height = 40
     wb.save(os.path.join(ROOT, "exports", "Book_Inventory.xlsx"))

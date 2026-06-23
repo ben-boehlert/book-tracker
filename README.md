@@ -39,8 +39,8 @@ python3 build.py
 | `n` | stable id / shelf order |
 | `title`, `author` | book |
 | `shelf` | which photographed shelf (1–3) |
-| `cat` | broad category |
-| `rel` | relevance to my research, 1–5 (5 = core: child welfare, poverty, public finance, applied micro) |
+| `cat` | broad subject category |
+| `relevance` | research bucket: `Immediately relevant` · `Will be relevant` · `Maybe relevant` · `For fun` |
 | `pages` | approx. length, standard print edition |
 | `status` | `Finished` · `Started` · `Not started` |
 

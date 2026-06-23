@@ -5,7 +5,7 @@
     "author": "Heather Ann Thompson",
     "shelf": 1,
     "cat": "History",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 752,
     "status": "Started"
   },
@@ -15,7 +15,7 @@
     "author": "John Rawls",
     "shelf": 1,
     "cat": "Politics & Philosophy",
-    "rel": 3,
+    "relevance": "Maybe relevant",
     "pages": 560,
     "status": "Started"
   },
@@ -25,7 +25,7 @@
     "author": "Richard W. Hamming",
     "shelf": 1,
     "cat": "Science & Tech",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 432,
     "status": "Started"
   },
@@ -35,7 +35,7 @@
     "author": "Brian Potter",
     "shelf": 1,
     "cat": "Economics & Quant Methods",
-    "rel": 3,
+    "relevance": "Maybe relevant",
     "pages": 384,
     "status": "Started"
   },
@@ -45,7 +45,7 @@
     "author": "Suzanne Mettler & Trevor E. Brown",
     "shelf": 1,
     "cat": "Politics & Philosophy",
-    "rel": 3,
+    "relevance": "Maybe relevant",
     "pages": 328,
     "status": "Not started"
   },
@@ -55,7 +55,7 @@
     "author": "Jenny Odell",
     "shelf": 1,
     "cat": "Arts, Media & Essays",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 256,
     "status": "Not started"
   },
@@ -65,7 +65,7 @@
     "author": "Ron Haskins",
     "shelf": 1,
     "cat": "Poverty & Social Policy",
-    "rel": 5,
+    "relevance": "Immediately relevant",
     "pages": 456,
     "status": "Not started"
   },
@@ -75,7 +75,7 @@
     "author": "Frances Fox Piven & Richard A. Cloward",
     "shelf": 1,
     "cat": "Poverty & Social Policy",
-    "rel": 4,
+    "relevance": "Will be relevant",
     "pages": 448,
     "status": "Not started"
   },
@@ -85,7 +85,7 @@
     "author": "Kelley Fong",
     "shelf": 1,
     "cat": "Child Welfare & Foster Care",
-    "rel": 5,
+    "relevance": "Immediately relevant",
     "pages": 296,
     "status": "Finished"
   },
@@ -95,7 +95,7 @@
     "author": "James T. Patterson",
     "shelf": 1,
     "cat": "Poverty & Social Policy",
-    "rel": 5,
+    "relevance": "Immediately relevant",
     "pages": 368,
     "status": "Not started"
   },
@@ -105,7 +105,7 @@
     "author": "Melinda Cooper",
     "shelf": 1,
     "cat": "Poverty & Social Policy",
-    "rel": 4,
+    "relevance": "Will be relevant",
     "pages": 480,
     "status": "Finished"
   },
@@ -115,7 +115,7 @@
     "author": "John McPhee",
     "shelf": 1,
     "cat": "Writing & Craft",
-    "rel": 2,
+    "relevance": "Maybe relevant",
     "pages": 208,
     "status": "Finished"
   },
@@ -125,7 +125,7 @@
     "author": "Melinda Cooper",
     "shelf": 1,
     "cat": "Public Finance & Tax",
-    "rel": 4,
+    "relevance": "Will be relevant",
     "pages": 568,
     "status": "Not started"
   },
@@ -135,7 +135,7 @@
     "author": "Eric Boehlert",
     "shelf": 2,
     "cat": "Arts, Media & Essays",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 352,
     "status": "Not started"
   },
@@ -145,7 +145,7 @@
     "author": "Michael Keen & Joel Slemrod",
     "shelf": 2,
     "cat": "Public Finance & Tax",
-    "rel": 5,
+    "relevance": "Will be relevant",
     "pages": 536,
     "status": "Not started"
   },
@@ -155,7 +155,7 @@
     "author": "Chris Miller",
     "shelf": 2,
     "cat": "History",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 464,
     "status": "Not started"
   },
@@ -165,7 +165,7 @@
     "author": "Jonathan Franzen",
     "shelf": 2,
     "cat": "Fiction",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 576,
     "status": "Started"
   },
@@ -175,7 +175,7 @@
     "author": "Kathryn Edin, H. Luke Shaefer & Timothy Nelson",
     "shelf": 2,
     "cat": "Poverty & Social Policy",
-    "rel": 5,
+    "relevance": "Immediately relevant",
     "pages": 336,
     "status": "Not started"
   },
@@ -185,7 +185,7 @@
     "author": "David Halberstam",
     "shelf": 2,
     "cat": "History",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 688,
     "status": "Not started"
   },
@@ -195,7 +195,7 @@
     "author": "Vincent Bevins",
     "shelf": 2,
     "cat": "History",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 352,
     "status": "Not started"
   },
@@ -205,7 +205,7 @@
     "author": "Edward Glaeser",
     "shelf": 2,
     "cat": "Urban & Housing",
-    "rel": 4,
+    "relevance": "Will be relevant",
     "pages": 352,
     "status": "Not started"
   },
@@ -215,7 +215,7 @@
     "author": "Douglas R. Hofstadter",
     "shelf": 2,
     "cat": "Science & Tech",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 777,
     "status": "Started"
   },
@@ -225,7 +225,7 @@
     "author": "Dan Charnas",
     "shelf": 2,
     "cat": "Arts, Media & Essays",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 480,
     "status": "Started"
   },
@@ -235,7 +235,7 @@
     "author": "Thomas Pynchon",
     "shelf": 2,
     "cat": "Fiction",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 152,
     "status": "Not started"
   },
@@ -245,7 +245,7 @@
     "author": "Jacob S. Hacker",
     "shelf": 2,
     "cat": "Poverty & Social Policy",
-    "rel": 4,
+    "relevance": "Will be relevant",
     "pages": 232,
     "status": "Not started"
   },
@@ -255,7 +255,7 @@
     "author": "Colson Whitehead",
     "shelf": 2,
     "cat": "Fiction",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 320,
     "status": "Not started"
   },
@@ -265,7 +265,7 @@
     "author": "Katherine Boo",
     "shelf": 2,
     "cat": "Poverty & Social Policy",
-    "rel": 3,
+    "relevance": "Maybe relevant",
     "pages": 288,
     "status": "Finished"
   },
@@ -275,7 +275,7 @@
     "author": "Danya Kukafka",
     "shelf": 2,
     "cat": "Fiction",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 320,
     "status": "Not started"
   },
@@ -285,7 +285,7 @@
     "author": "Thomas Pynchon",
     "shelf": 2,
     "cat": "Fiction",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 304,
     "status": "Not started"
   },
@@ -295,7 +295,7 @@
     "author": "Arindrajit Dube",
     "shelf": 2,
     "cat": "Economics & Quant Methods",
-    "rel": 5,
+    "relevance": "Will be relevant",
     "pages": 320,
     "status": "Started"
   },
@@ -305,7 +305,7 @@
     "author": "Sarah Harrison Smith",
     "shelf": 2,
     "cat": "Writing & Craft",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 208,
     "status": "Not started"
   },
@@ -315,7 +315,7 @@
     "author": "Steven Hahn",
     "shelf": 2,
     "cat": "History",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 480,
     "status": "Not started"
   },
@@ -325,7 +325,7 @@
     "author": "Simone Scardapane",
     "shelf": 2,
     "cat": "Economics & Quant Methods",
-    "rel": 3,
+    "relevance": "Maybe relevant",
     "pages": 378,
     "status": "Started"
   },
@@ -335,7 +335,7 @@
     "author": "John McPhee",
     "shelf": 2,
     "cat": "Science & Tech",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 696,
     "status": "Not started"
   },
@@ -345,7 +345,7 @@
     "author": "Thomas Dyja",
     "shelf": 2,
     "cat": "Urban & Housing",
-    "rel": 3,
+    "relevance": "Maybe relevant",
     "pages": 512,
     "status": "Not started"
   },
@@ -355,7 +355,7 @@
     "author": "Siddhartha Mukherjee",
     "shelf": 2,
     "cat": "Science & Tech",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 592,
     "status": "Not started"
   },
@@ -365,7 +365,7 @@
     "author": "Martin Gilens",
     "shelf": 2,
     "cat": "Poverty & Social Policy",
-    "rel": 5,
+    "relevance": "Immediately relevant",
     "pages": 296,
     "status": "Started"
   },
@@ -375,7 +375,7 @@
     "author": "Charles Petzold",
     "shelf": 3,
     "cat": "Science & Tech",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 480,
     "status": "Finished"
   },
@@ -385,7 +385,7 @@
     "author": "Hastie, Tibshirani & Friedman",
     "shelf": 3,
     "cat": "Economics & Quant Methods",
-    "rel": 4,
+    "relevance": "Will be relevant",
     "pages": 745,
     "status": "Not started"
   },
@@ -395,7 +395,7 @@
     "author": "Andrea Elliott",
     "shelf": 3,
     "cat": "Child Welfare & Foster Care",
-    "rel": 5,
+    "relevance": "Immediately relevant",
     "pages": 624,
     "status": "Not started"
   },
@@ -405,7 +405,7 @@
     "author": "Robert Kolker",
     "shelf": 3,
     "cat": "Science & Tech",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 400,
     "status": "Not started"
   },
@@ -415,7 +415,7 @@
     "author": "Robert Gibbons",
     "shelf": 3,
     "cat": "Economics & Quant Methods",
-    "rel": 4,
+    "relevance": "Will be relevant",
     "pages": 288,
     "status": "Not started"
   },
@@ -425,7 +425,7 @@
     "author": "Jonathan Mahler",
     "shelf": 3,
     "cat": "Urban & Housing",
-    "rel": 3,
+    "relevance": "For fun",
     "pages": 400,
     "status": "Finished"
   },
@@ -435,7 +435,7 @@
     "author": "Simon Winchester",
     "shelf": 3,
     "cat": "History",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 464,
     "status": "Not started"
   },
@@ -445,7 +445,7 @@
     "author": "Amartya Sen",
     "shelf": 3,
     "cat": "Economics & Quant Methods",
-    "rel": 5,
+    "relevance": "Will be relevant",
     "pages": 224,
     "status": "Not started"
   },
@@ -455,7 +455,7 @@
     "author": "Christopher Hayes",
     "shelf": 3,
     "cat": "Politics & Philosophy",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 256,
     "status": "Not started"
   },
@@ -465,7 +465,7 @@
     "author": "Edmund Fawcett",
     "shelf": 3,
     "cat": "Politics & Philosophy",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 496,
     "status": "Not started"
   },
@@ -475,7 +475,7 @@
     "author": "Amartya Sen",
     "shelf": 3,
     "cat": "History",
-    "rel": 3,
+    "relevance": "For fun",
     "pages": 480,
     "status": "Not started"
   },
@@ -485,7 +485,7 @@
     "author": "Richard Rorty",
     "shelf": 3,
     "cat": "Politics & Philosophy",
-    "rel": 3,
+    "relevance": "Maybe relevant",
     "pages": 160,
     "status": "Not started"
   },
@@ -495,7 +495,7 @@
     "author": "Richard Rorty",
     "shelf": 3,
     "cat": "Politics & Philosophy",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 424,
     "status": "Not started"
   },
@@ -505,7 +505,7 @@
     "author": "Daniel Wortel-London",
     "shelf": 3,
     "cat": "Urban & Housing",
-    "rel": 4,
+    "relevance": "Will be relevant",
     "pages": 335,
     "status": "Not started"
   },
@@ -515,7 +515,7 @@
     "author": "Rashid Khalidi",
     "shelf": 3,
     "cat": "History",
-    "rel": 1,
+    "relevance": "For fun",
     "pages": 336,
     "status": "Started"
   },
@@ -525,7 +525,7 @@
     "author": "Eva Rosen",
     "shelf": 3,
     "cat": "Urban & Housing",
-    "rel": 5,
+    "relevance": "Immediately relevant",
     "pages": 288,
     "status": "Finished"
   },
@@ -535,7 +535,7 @@
     "author": "Thomas J. Campanella",
     "shelf": 3,
     "cat": "Urban & Housing",
-    "rel": 3,
+    "relevance": "Maybe relevant",
     "pages": 552,
     "status": "Not started"
   },
@@ -545,7 +545,7 @@
     "author": "Nina Bernstein",
     "shelf": 3,
     "cat": "Child Welfare & Foster Care",
-    "rel": 5,
+    "relevance": "Immediately relevant",
     "pages": 496,
     "status": "Started"
   },
@@ -555,7 +555,7 @@
     "author": "Thomas J. Sugrue",
     "shelf": 3,
     "cat": "Urban & Housing",
-    "rel": 4,
+    "relevance": "Will be relevant",
     "pages": 400,
     "status": "Started"
   },
@@ -565,7 +565,7 @@
     "author": "Barbara Kingsolver",
     "shelf": 3,
     "cat": "Fiction",
-    "rel": 2,
+    "relevance": "For fun",
     "pages": 560,
     "status": "Finished"
   },
@@ -575,7 +575,7 @@
     "author": "David J. C. MacKay",
     "shelf": null,
     "cat": "Economics & Quant Methods",
-    "rel": 3,
+    "relevance": "Maybe relevant",
     "pages": 642,
     "status": "Not started"
   }
