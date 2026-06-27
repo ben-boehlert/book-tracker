@@ -27,6 +27,13 @@ exports/
   book_inventory.md         plain-text table (generated)
 ```
 
+## Use from a Claude.ai Project
+
+`claude_project.md` holds instructions to paste into a Claude.ai Project so a regular
+chat can pull this data from GitHub and help you query/decide what to read. The Project
+(GitHub connector) is read-only; edits are drafted there and applied via a Claude Code
+session, which commits and pushes.
+
 ## Looking up page counts
 
 Instead of opening the browser to a retailer, query the APIs:
